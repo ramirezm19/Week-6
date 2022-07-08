@@ -1,5 +1,5 @@
 //Put all your classes at the top
-//this class creates a card
+//This class creates a card
 
 class Card {
     constructor (suit, rank, value) {
@@ -40,10 +40,6 @@ class Player {
         this.score = 0
     }
 }
-//these variables are to define each player's score
-// const player1Score = 
-// const player2Score = 
-
 
 //The StartGame class is to start the game by having the deck be shuffled and dealt between the two players.
 class StartGame {
@@ -70,67 +66,54 @@ class StartGame {
 
         this.players[0].hand = list.slice (0, half);
         this.players[1].hand = list.slice (-half);
-        //for (let i = 0; i <26; i++) {
-           // for (let j = 0; j < this.players.length; j++) {
-               // this.players[j].hand.push(this.deckOfCards[0]);
-               // this.deck.splice(0, 1)
     }     
-    
+ //created this function to be able to display what player was the winner of the game.   
+    displayWinner(score) {
+        if (score[0] > score[1]) {
+            alert('Game over. Happy wins the war!')
+        } else alert('Game over. Ruby wins the war!')
+     } 
+//created this function is to compare cards between the players and be able to decide who wins the round and also add points to the winning player each round.
     compareCards() {
         let player1Score = 0;
         let player2Score = 0;
+        let playersScore = [];
 
-    for (let i = 1; i < this.players[0].hand.length; i++) {
-        if (player1.hand[i].value == player2.hand[i].value); {
-            player1Score, player2Score
-            alert(`Round: ${i}
+    for (let i = 0; i < this.players[0].hand.length; i++) {
+        if (player1.hand[i].value < player2.hand[i].value) {
+            player2Score++     
+            alert(`Ruby wins round ${i+1}
             Happy's card: ${player1.hand[i].rank} of ${player1.hand[i].suit}
             Ruby's card: ${player2.hand[i].rank} of ${player2.hand[i].suit}
             Happy's score: ${player1Score}
-            Ruby's's score: ${player2Score}`);
-        } if (player1.hand[i].value > player2.hand[i].value) {
+            Ruby's score: ${player2Score}`);
+        } else if (player1.hand[i].value > player2.hand[i].value) {    
             player1Score++
-            alert(`Happy wins round ${i}
+            alert(`Happy wins round ${i+1}
             Happy's card: ${player1.hand[i].rank} of ${player1.hand[i].suit}
             Ruby's card: ${player2.hand[i].rank} of ${player2.hand[i].suit}
             Happy's score: ${player1Score}
             Ruby's score: ${player2Score}`);
         } else {
-            player2Score++
-            alert(`Ruby wins round ${i}
-            Happy's card: ${player1.hand[i].rank} of ${player1.hand[i].suit}
-            Ruby's card: ${player2.hand[i].rank} of ${player2.hand[i].suit}
-            Happy's score: ${player1Score}
-            Ruby's score: ${player2Score}`);
+                alert(`Round: ${i+1} is a tie. No points awarded.
+                Happy's card: ${player1.hand[i].rank} of ${player1.hand[i].suit}
+                Ruby's card: ${player2.hand[i].rank} of ${player2.hand[i].suit}
+                Happy's score: ${player1Score}
+                Ruby's's score: ${player2Score}`);
         }
-            // alert('Game over!' ${displayWinner});
+
     }
-        // if (player1.hand[i].value > player2.hand[i].value) {
-        //         player1Score++
-        //     } 
-        //     else if (player1.hand[i].value < player2.hand[i].value) {
-        //         player2Score++
-        //     }
-        // }
- 
-    //  displayWinner() {
-    //     if (player1Score > player2Score) {
-    //         'Happy wins the war!'
-    //     } else 'Ruby wins the war!'
-    //  }  
+    playersScore.push(player1Score, player2Score) 
+        return playersScore;
+}
+        
     
-        console.log(player1Score, player2Score);
-
-    
-    }
-
-    }
-
-
+}
 
 let fullDeck = new Deck();
 let player1 = new Player("Happy");
 let player2 = new Player("Ruby");
+let score 
 
 console.log(player1);
 console.log(player2);
@@ -139,7 +122,8 @@ const game = new StartGame(fullDeck, [player1, player2]);
 
 game.shuffleCards();
 game.dealCards();
-game.compareCards();
+score = game.compareCards();
+game.displayWinner(score);
 
 //this console.logs were to verify that each player was getting a shuffled 26-card hand.
 // console.log('this is player1 hand', player1.hand);
