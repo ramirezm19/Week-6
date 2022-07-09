@@ -71,8 +71,9 @@ class StartGame {
     displayWinner(score) {
         if (score[0] > score[1]) {
             alert('Game over. Happy wins the war!')
-        } else alert('Game over. Ruby wins the war!')
-     } 
+        } else alert('Game over. Ruby wins the war!')    
+    } 
+
 //created this function is to compare cards between the players and be able to decide who wins the round and also add points to the winning player each round.
     compareCards() {
         let player1Score = 0;
